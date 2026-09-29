@@ -1,63 +1,35 @@
-# sql-estudos-contoso-retail
-Praticando SQL na prática: consultas de negócio com MAX, AVG, COUNT, ROUND e GROUP BY na base ContosoRetailDW
+# 📊 Estudos de SQL com ContosoRetailDW
+
+Repositório com minhas práticas de SQL Server usando a base de dados
+de exemplo **ContosoRetailDW**, da Microsoft.
+
+## 🎯 Objetivo
+Praticar consultas SQL respondendo perguntas de negócio, como:
+- Quantos produtos e marcas a empresa tem?
+- Qual é o produto mais caro?
+- Qual é o preço médio por marca e por classe?
+
+## 🛠️ Ferramentas
+- SQL Server
+- SQL Server Management Studio (SSMS)
+
+## 📚 Conceitos praticados
+- `SELECT` e `FROM`
+- `WHERE`
+- Funções de agregação: `MAX`, `AVG`, `COUNT`, `COUNT(DISTINCT)`
+- `ROUND`
+- `GROUP BY`
+- `ORDER BY` (`ASC` e `DESC`)
+
+## 📂 Estrutura
+- `consultas/`: scripts SQL organizados por tema
+- `imagens/`: prints dos resultados
 
 
--- quantos produtos temos na empresa 
-select *
-from DimProduct
+## 🚀 Próximos passos
+- [ ] JOINs entre tabelas (DimProduct, FactSales, DimStore)
+- [ ] Subqueries
+- [ ] Funções de janela (`ROW_NUMBER`, `RANK`)
 
--- produto mais caro da empresa
-
-select max(UnitPrice) from DimProduct
-
---qual a média dos preços dos produtos 
-
-select 
-round(AVG(unitprice),2)
-from DimProduct
-
--- quantas marcas temos na empresa 
-
-select 
-count(distinct(BrandName))
-from DimProduct
-
--- exiba as marcas da empresa usando a função 'group by'
-
-select 
-BrandName,
-max(unitprice) as 'preço maximo'
-from DimProduct
-group by BrandName
-
--- exiba todas as marcas e todas as classes 
-
-select
-brandname,
-classname,
-round(AVG(UnitPrice), 2) as 'preço medio'
-from DimProduct
-where ClassName= 'economy' and BrandName= 'contoso'
-group by BrandName, ClassName
-
---qual media de preço da classe economica 
-
-select
-classname,
-round(AVG(unitprice),2) as 'preço medio'
-from DimProduct
-where ClassName= 'economy'
-group by ClassName
-
---exbida a tabela de produtos
---(nome produto, marca, preço)
---ordene do mais caro para o mais barato
---exiba os 10 produtos mais baratos
-
-
-select top 20
-ProductName,
-brandname,
-UnitPrice
-from DimProduct
-order by UnitPrice asc
+## 👤 Autor
+Diego Diniz | [LinkedIn] https://www.linkedin.com/in/diego-diniz-dadosddr33/
